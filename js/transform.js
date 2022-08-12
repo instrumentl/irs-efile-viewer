@@ -78,12 +78,14 @@ function displayError(message) {
 // Confirm to the user their document has been loaded and present
 // the user with forms they can select to view
 function addXMLToPage(inputDom) {
-    $('#input-filename').text('Loaded: ' + inputFilename());
+    // $('#input-filename').text('Loaded: ' + inputFilename());
 
     var formProps = getNameAndTaxYear(inputDom);
+    /*
     if(formProps) {
         $('#filer-name').append(formProps.name + ' &mdash; ' + formProps.year);
     }
+    */
 
     var forms = getListOfForms(inputDom);
     var formName = forms[0];
