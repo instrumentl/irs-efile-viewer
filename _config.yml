@@ -9,3 +9,5 @@ exclude: [
   'script',
   'vendor'
 ]
+
+theme: jekyll-theme-slate
