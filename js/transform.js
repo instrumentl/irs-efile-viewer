@@ -86,6 +86,9 @@ function addXMLToPage(inputDom) {
     }
 
     var forms = getListOfForms(inputDom);
+    var formName = forms[0];
+    generateAndDisplayForm(formName);
+    /*
     forms.forEach(function(formName) {
         $('#forms-list').append(
             $('<li>').append(
@@ -97,6 +100,7 @@ function addXMLToPage(inputDom) {
         );
     });
     $('#forms-list a').click(displayForm);
+    */
 }
 
 // Given an XML file representing an IRS e-file, return the name of
@@ -245,12 +249,14 @@ function generateAndDisplayForm(formId, dest) {
     // must happen synchronously with a user action (click). Because
     // loading the stylesheet is an async action, we need to open
     // the window first ahead of time.
-    var destWindow;
+    var destWindow = window;
+    /*
     if(!dest) {
         destWindow = window.open('about:blank');
         destWindow.document.write('<link href="{{site.github.url}}/css/loading.css" rel="stylesheet"><div class="loader"><span>{</span><span>}</span></div>');
         destWindow.document.close();
     }
+    */
     loadXML(stylesheetPath).then(function(stylesheet) {
         var formHtml = render(templateDom, stylesheet);
         if(dest) {
@@ -262,9 +268,11 @@ function generateAndDisplayForm(formId, dest) {
         }
     }).catch(function(error) {
         console.log(error);
+        /*
         if(destWindow) {
             destWindow.close();
         }
+        */
         displayFormError('There was a problem generating ' + getDisplayName(formId) + '.', formId);
     });
 }
